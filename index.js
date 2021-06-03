@@ -1,12 +1,14 @@
-const express = require('express')
-const getTasks = require('./services/notion');
-const PORT = process.env.PORT || 5000
+const express = require("express");
+const getTasks = require("./services/notion");
+const PORT = process.env.PORT || 5000;
 
-const app = express()
+const app = express();
 
-app.get('/tasks', async (req, res) => {
-    const tasks = await getTasks()
-    res.json(tasks)
-}) 
+app.use(express.static("public"));
 
-app.listen(PORT, console.log('Server started'))
+app.get("/tasks", async (req, res) => {
+  const tasks = await getTasks();
+  res.json(tasks);
+});
+
+app.listen(PORT, console.log("Server started at" + PORT));
